@@ -1,0 +1,17 @@
+server:
+  port: 8763
+
+spring:
+  application:
+    name: micro-order
+
+management:
+  endpoints:
+    web:
+      base-path: /
+
+logging:
+  appender: console
+  path: /data/logs
+  pattern:
+    level: info
