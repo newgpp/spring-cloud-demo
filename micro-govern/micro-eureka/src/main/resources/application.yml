@@ -11,6 +11,8 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://admin:123456@127.0.0.1:8761/eureka/
   environment: template
   datacenter: cloud
 

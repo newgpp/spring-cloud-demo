@@ -1,4 +1,4 @@
-package com.felix;
+package com.felix.config;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +14,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().ignoringAntMatchers("/eureka/**");
+        http.authorizeRequests().antMatchers("/info", "/health").permitAll();
         super.configure(http);
     }
 }

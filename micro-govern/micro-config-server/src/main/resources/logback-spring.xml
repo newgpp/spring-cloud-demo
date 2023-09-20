@@ -5,11 +5,13 @@
     <springProperty scope="context" name="logPath" source="logging.path" defaultValue="/data/logs"/>
     <springProperty scope="context" name="logAppender" source="logging.appender" defaultValue="file"/>
     <springProperty scope="context" name="serverName" source="spring.application.name" defaultValue="micro-ignore"/>
-    <springProperty scope="context" name="logPattern" source = "logging.pattern" defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS} %5level [%15thread] [%40.40logger{40}] [%10method,%line] : %msg%n"/>
-
+    <property name="consoleLogPattern"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <property name="fileLogPattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS}{faint} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- }{magenta} ---{faint} [%15.15t]{faint} %-40.40logger{39}{cyan} :{faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${logPattern}</pattern>
+            <pattern>${consoleLogPattern}</pattern>
             <charset>utf8</charset>
         </encoder>
     </appender>
@@ -20,7 +22,7 @@
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${logPattern}</pattern>
+            <pattern>${fileLogPattern}</pattern>
         </encoder>
     </appender>
 
@@ -28,6 +30,5 @@
         <level value="${logLevel}" />
         <appender-ref ref="${logAppender}" />
     </root>
-
 
 </configuration>

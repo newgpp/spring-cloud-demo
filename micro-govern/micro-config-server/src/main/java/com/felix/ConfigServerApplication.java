@@ -2,7 +2,6 @@ package com.felix;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
@@ -10,7 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @author felix
  * @desc some desc
  */
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 @EnableConfigServer
 @EnableEurekaClient
 public class ConfigServerApplication {
