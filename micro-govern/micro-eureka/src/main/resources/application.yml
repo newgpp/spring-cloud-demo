@@ -1,0 +1,24 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+management:
+  endpoints:
+    web:
+      base-path: /
+
+spring:
+  application:
+    name: micro-eureka
+  security:
+    user:
+      name: admin
+      password: 123456
+
+logging:
+  pattern:
+    level: debug

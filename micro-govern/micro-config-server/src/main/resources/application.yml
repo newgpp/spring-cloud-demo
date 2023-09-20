@@ -1,0 +1,53 @@
+server:
+  port: 8762
+
+spring:
+  profiles:
+    active: jdbc
+  application:
+    name: micro-config-server
+  datasource:
+    url: jdbc:mysql://192.168.159.111:3306/micro_govern?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    #连接池配置
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 20
+      min-idle: 5
+      max-idle: 20
+      max-wait-millis: 10000
+      validation-query: SELECT 1
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      remove-abandoned-timeout: 200
+  cloud:
+    config:
+      server:
+        jdbc:
+          order: 1
+          sql: SELECT key1, value1 from micro_config where APPLICATION=? and PROFILE=? and LABEL=?
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 15
+    lease-expiration-duration-in-seconds: 45
+  client:
+    serviceUrl:
+      defaultZone: http://admin:123456@127.0.0.1:8761/eureka/
+    registry-fetch-interval-seconds: 10
+
+management:
+  endpoints:
+    web:
+      base-path: /
+
+logging:
+  pattern:
+    level: debug
