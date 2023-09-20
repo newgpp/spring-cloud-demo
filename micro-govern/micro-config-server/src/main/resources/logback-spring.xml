@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <springProperty scope="context" name="logLevel" source="logging.pattern.level" defaultValue="info"/>
+    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="/data/logs"/>
+    <springProperty scope="context" name="logAppender" source="logging.appender" defaultValue="file"/>
+    <springProperty scope="context" name="serverName" source="spring.application.name" defaultValue="micro-ignore"/>
+    <springProperty scope="context" name="logPattern" source = "logging.pattern" defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS} %5level [%15thread] [%40.40logger{40}] [%10method,%line] : %msg%n"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${logPattern}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/${serverName}/${serverName}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root>
+        <level value="${logLevel}" />
+        <appender-ref ref="${logAppender}" />
+    </root>
+
+
+</configuration>

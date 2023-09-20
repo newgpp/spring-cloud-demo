@@ -49,5 +49,7 @@ management:
       base-path: /
 
 logging:
+  appender: console
+  path: /data/logs
   pattern:
-    level: debug
+    level: info

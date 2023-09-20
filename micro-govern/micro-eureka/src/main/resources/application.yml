@@ -2,9 +2,17 @@ server:
   port: 8761
 
 eureka:
+  server:
+    #eureka server刷新readCacheMap的时间
+    #把readWriteCacheMap的缓存更新到readCacheMap上周期
+    response-cache-update-interval-ms: 10000 #default 30*1000
+    response-cache-auto-expiration-in-seconds: 60 #default 180s
+    eviction-interval-timer-in-ms: 20000 #default 60*1000
   client:
     registerWithEureka: false
     fetchRegistry: false
+  environment: template
+  datacenter: cloud
 
 management:
   endpoints:
@@ -20,5 +28,7 @@ spring:
       password: 123456
 
 logging:
+  appender: console
+  path: /data/logs
   pattern:
-    level: debug
+    level: info
