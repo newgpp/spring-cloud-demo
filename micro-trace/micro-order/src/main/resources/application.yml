@@ -11,7 +11,15 @@ management:
       base-path: /
 
 logging:
-  appender: console
-  path: /data/logs
-  pattern:
-    level: info
+  level:
+    root: info
+    com.felix: debug
+  customize:
+    appender: console
+
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL

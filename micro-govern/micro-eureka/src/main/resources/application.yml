@@ -30,7 +30,8 @@ spring:
       password: 123456
 
 logging:
-  appender: console
-  path: /data/logs
-  pattern:
-    level: info
+  level:
+    root: info
+    com.felix: debug
+  customize:
+    appender: console

@@ -1,13 +1,14 @@
 spring:
-  config:
-    name: common,special
-    profile: template
-    label: master
-    fail-fast: true
-    override-system-properties: true
-    discovery:
-      enabled: true
-      service-id: micro-config-server
+  cloud:
+    config:
+      name: common,special
+      profile: template
+      label: master
+      fail-fast: true
+      override-system-properties: true
+      discovery:
+        enabled: true
+        service-id: micro-config-server
 
 eureka:
   instance:
