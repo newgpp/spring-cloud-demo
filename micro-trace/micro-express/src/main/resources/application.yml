@@ -19,7 +19,11 @@ logging:
 
 
 feign:
+  hystrix:
+    enabled: true
   client:
     config:
       default:
+        connectTimeout: 10000
+        readTimeout: 10000
         loggerLevel: FULL
