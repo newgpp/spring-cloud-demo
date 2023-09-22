@@ -1,0 +1,79 @@
+server:
+  port: 8765
+  servlet:
+    context-path: /xxl-job-admin
+
+spring:
+  application:
+    name: micro-xxljob-server
+  datasource:
+    url: jdbc:mysql://${common.mysql.url}:3306/micro_schedule?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: ${common.mysql.username}
+    password: ${common.mysql.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      validation-timeout: '1000'
+      idle-timeout: '30000'
+      maximum-pool-size: '30'
+      auto-commit: 'true'
+      connection-timeout: '10000'
+      pool-name: HikariCP
+      max-lifetime: '900000'
+      connection-test-query: SELECT 1
+      minimum-idle: '10'
+  mail:
+    username: xxx@qq.com
+    port: '25'
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: 'true'
+            required: 'true'
+          auth: 'true'
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+    from: xxx@qq.com
+    host: smtp.qq.com
+    password: xxx
+  freemarker:
+    settings:
+      number_format: 0.##########
+    suffix: .ftl
+    charset: UTF-8
+    request-context-attribute: request
+    templateLoaderPath: classpath:/templates/
+  mvc:
+    static-path-pattern: /static/**
+    servlet:
+      load-on-startup: '0'
+
+xxl:
+  job:
+    triggerpool:
+      slow:
+        max: '100'
+      fast:
+        max: '200'
+    accessToken: default_token
+    logretentiondays: '30'
+    i18n: zh_CN
+
+mybatis:
+  mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
+
+management:
+  endpoints:
+    web:
+      base-path: /
+  health:
+    mail:
+      enabled: 'false'
+
+logging:
+  level:
+    root: info
+    com.xxl.job.admin: info
+  customize:
+    appender: console
