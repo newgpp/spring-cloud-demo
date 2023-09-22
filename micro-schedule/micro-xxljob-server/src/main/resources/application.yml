@@ -15,13 +15,13 @@ spring:
     hikari:
       validation-timeout: '1000'
       idle-timeout: '30000'
-      maximum-pool-size: '30'
+      maximum-pool-size: '10'
       auto-commit: 'true'
       connection-timeout: '10000'
       pool-name: HikariCP
       max-lifetime: '900000'
       connection-test-query: SELECT 1
-      minimum-idle: '10'
+      minimum-idle: '3'
   mail:
     username: xxx@qq.com
     port: '25'

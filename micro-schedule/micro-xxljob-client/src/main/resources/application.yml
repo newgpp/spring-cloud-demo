@@ -6,9 +6,9 @@ spring:
     name: micro-xxljob-client
 
 xxl:
-  admin:
-    addresses: http://127.0.0.1:8765/xxl-job-admin
   job:
+    admin:
+      addresses: http://127.0.0.1:8765/xxl-job-admin
     executor:
       ip: ''
       logretentiondays: '30'
@@ -17,6 +17,7 @@ xxl:
       address: ''
       port: '18766'
     accessToken: default_token
+
 
 management:
   endpoints:
