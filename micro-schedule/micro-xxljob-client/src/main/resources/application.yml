@@ -5,6 +5,19 @@ spring:
   application:
     name: micro-xxljob-client
 
+xxl:
+  admin:
+    addresses: http://127.0.0.1:8765/xxl-job-admin
+  job:
+    executor:
+      ip: ''
+      logretentiondays: '30'
+      appname: micro-xxljob-client
+      logpath: /data/applogs/xxl-job/jobhandler
+      address: ''
+      port: '18766'
+    accessToken: default_token
+
 management:
   endpoints:
     web:
@@ -16,7 +29,6 @@ logging:
     com.felix: debug
   customize:
     appender: console
-
 
 feign:
   hystrix:
