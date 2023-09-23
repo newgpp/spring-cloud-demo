@@ -1,0 +1,29 @@
+server:
+  port: 8861
+
+spring:
+  application:
+    name: micro-minio
+
+management:
+  endpoints:
+    web:
+      base-path: /
+
+logging:
+  level:
+    root: info
+    com.felix: debug
+  customize:
+    appender: console
+
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+        loggerLevel: FULL
