@@ -5,6 +5,13 @@ spring:
   application:
     name: micro-minio
 
+minio:
+  accessKey: minio
+  secretKey: minio123
+  bucket: bucket-felix
+  endpoint: http://192.168.197.101:9000
+  readPath: http://192.168.197.101:9000
+
 management:
   endpoints:
     web:

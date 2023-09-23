@@ -1,14 +1,15 @@
 package com.felix;
 
 import io.minio.*;
+import io.minio.http.Method;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class MinioTest {
 
@@ -67,5 +68,33 @@ public class MinioTest {
                 .object("butterfly.jpg")
                 .build();
         minioClient.removeObject(removeObjectArgs);
+    }
+    
+    @Test
+    @Ignore
+    public void get_pre_sign_upload_url() throws Exception {
+        String objectName = "insect.jpg";
+        String url = minioClient.getPresignedObjectUrl(
+                GetPresignedObjectUrlArgs.builder()
+                        .method(Method.PUT)
+                        .bucket(BUCKET_NAME)
+                        .object(objectName)
+                        .expiry(1, TimeUnit.DAYS)
+                        .build());
+        System.out.println(url);
+    }
+
+    @Test
+    @Ignore
+    public void get_pre_sign_download_url() throws Exception {
+        String objectName = "insect.jpg";
+        String url = minioClient.getPresignedObjectUrl(
+                GetPresignedObjectUrlArgs.builder()
+                        .method(Method.GET)
+                        .bucket(BUCKET_NAME)
+                        .object(objectName)
+                        .expiry(1, TimeUnit.DAYS)
+                        .build());
+        System.out.println(url);
     }
 }
