@@ -5,7 +5,7 @@
 | 组件           | 版本             | 备注 |
 |--------------|----------------| --- |
 | spring cloud | Hoxton.SR12    |  |
-| spring boot  | 2.3.12.RELEASE |  |
+| spring boot  | 2.3.12.RELEASE |  | 
 | xxl job      | 2.4.1          |  |
 
 ### 启动顺序
