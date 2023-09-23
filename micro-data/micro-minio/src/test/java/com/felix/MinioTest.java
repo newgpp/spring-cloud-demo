@@ -69,7 +69,7 @@ public class MinioTest {
                 .build();
         minioClient.removeObject(removeObjectArgs);
     }
-    
+
     @Test
     @Ignore
     public void get_pre_sign_upload_url() throws Exception {
