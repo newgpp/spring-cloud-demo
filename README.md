@@ -12,10 +12,11 @@
 
 - micro-eureka
 - micro-config-server
+- micro-gateway
 
 ### micro-govern
 
-- eureka
+- micro-eureka
 ```html
 https://cloud.spring.io/spring-cloud-netflix/reference/html/
 ```
@@ -23,6 +24,11 @@ https://cloud.spring.io/spring-cloud-netflix/reference/html/
 - micro-config-server
 ```html
 https://docs.spring.io/spring-cloud-config/docs/current/reference/html
+```
+
+- micro-gateeway
+```html
+https://docs.spring.io/spring-cloud-gateway/docs/2.2.9.BUILD-SNAPSHOT/reference/html/
 ```
 
 ```bash

@@ -1,0 +1,35 @@
+server:
+  port: 8700
+
+spring:
+  application:
+    name: micro-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: micro-order
+          uri: lb://micro-order
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+        - id: micro-express
+          uri: lb://micro-express
+          predicates:
+            - Path=/express/**
+          filters:
+            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      base-path: /
+
+logging:
+  level:
+    root: info
+    com.felix: debug
+  customize:
+    appender: console

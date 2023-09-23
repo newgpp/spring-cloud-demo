@@ -9,6 +9,7 @@
     <modules>
         <module>micro-eureka</module>
         <module>micro-config-server</module>
+        <module>micro-gateway</module>
     </modules>
     <packaging>pom</packaging>
 
