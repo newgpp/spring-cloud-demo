@@ -70,3 +70,14 @@ http://127.0.0.1:8765/xxl-job-admin
 # forked from
 https://github.com/xuxueli/xxl-job
 ```
+
+### micro-data
+
+- micro-minio
+```html
+# 官方文档
+https://min.io/docs/minio/linux/index.html
+
+# Java sdk 示例
+https://github.com/minio/minio-java/tree/master/examples
+```
