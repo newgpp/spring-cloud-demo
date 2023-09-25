@@ -1,0 +1,30 @@
+server:
+  port: 8862
+
+spring:
+  application:
+    name: micro-redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password:
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 50
+        min-idle: 5
+        max-idle: 50
+        max-wait: 5000
+
+management:
+  endpoints:
+    web:
+      base-path: /
+
+logging:
+  level:
+    root: info
+    com.felix: debug
+  customize:
+    appender: console
