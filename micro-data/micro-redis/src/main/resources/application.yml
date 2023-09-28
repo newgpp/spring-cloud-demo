@@ -6,16 +6,29 @@ spring:
     name: micro-redis
   redis:
     host: 127.0.0.1
+#    sentinel:
+#      master: mymaster
+#      nodes: 127.0.0.1:26379,127.0.0.1:26380
     port: 6379
     database: 0
     password:
-    timeout: 1000
+    timeout: 10000
     lettuce:
       pool:
         max-active: 50
         min-idle: 5
         max-idle: 50
         max-wait: 5000
+
+redis:
+  stream:
+    login:
+      key: 'login-events'
+      group: 'login-group-1'
+    logout:
+      key: 'logout-events'
+      group: 'logout-group-1'
+
 
 management:
   endpoints:

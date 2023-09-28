@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/redis")
-public class RedisController {
+@RequestMapping("/redis/ops")
+public class RedisOpsController {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;

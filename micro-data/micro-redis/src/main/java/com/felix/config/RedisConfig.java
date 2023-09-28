@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-public class RedisConfiguration {
+public class RedisConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
         lettuceConnectionFactory.setShareNativeConnection(false);
@@ -29,8 +29,8 @@ public class RedisConfiguration {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         template.setKeySerializer(stringRedisSerializer);
         template.setHashKeySerializer(stringRedisSerializer);
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.setValueSerializer(stringRedisSerializer);
+        template.setHashValueSerializer(stringRedisSerializer);
         template.afterPropertiesSet();
         return template;
     }
