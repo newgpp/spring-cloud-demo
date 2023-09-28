@@ -28,10 +28,6 @@ public class RedisStreamConfig {
     @Value("${redis.stream.login.group:login-group-1}")
     private String streamLoginGroup;
 
-    @Value("${redis.stream.logout.key:logout-events}")
-    private String streamLogoutKey;
-    @Value("${redis.stream.logout.group:logout-group-1}")
-    private String streamLogoutGroup;
     @Value("${eureka.instance.instance-id}")
     private String instanceId;
 
