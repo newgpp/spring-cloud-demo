@@ -1,7 +1,7 @@
 package model;
 
 /**
- * generated at 2023-10-08 21:19:58
+ * generated at 2023-10-09 07:56:27
  */
 public class MicroConfig {
     /**
@@ -56,7 +56,7 @@ public class MicroConfig {
     }
 
     public void setKey1(String key1) {
-        this.key1 = key1 == null ? null : key1.trim();
+        this.key1 = key1;
     }
 
     public String getValue1() {
@@ -64,7 +64,7 @@ public class MicroConfig {
     }
 
     public void setValue1(String value1) {
-        this.value1 = value1 == null ? null : value1.trim();
+        this.value1 = value1;
     }
 
     public String getApplication() {
@@ -72,7 +72,7 @@ public class MicroConfig {
     }
 
     public void setApplication(String application) {
-        this.application = application == null ? null : application.trim();
+        this.application = application;
     }
 
     public String getProfile() {
@@ -80,7 +80,7 @@ public class MicroConfig {
     }
 
     public void setProfile(String profile) {
-        this.profile = profile == null ? null : profile.trim();
+        this.profile = profile;
     }
 
     public String getLabel() {
@@ -88,7 +88,7 @@ public class MicroConfig {
     }
 
     public void setLabel(String label) {
-        this.label = label == null ? null : label.trim();
+        this.label = label;
     }
 
     public String getConfigtype() {
@@ -96,7 +96,7 @@ public class MicroConfig {
     }
 
     public void setConfigtype(String configtype) {
-        this.configtype = configtype == null ? null : configtype.trim();
+        this.configtype = configtype;
     }
 
     public String getDescription() {
@@ -104,6 +104,6 @@ public class MicroConfig {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
 }

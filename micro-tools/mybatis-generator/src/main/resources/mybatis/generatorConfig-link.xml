@@ -42,7 +42,7 @@
             <!--在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false-->
             <property name="enableSubPackages" value="true"/>
             <!--设置是否在setter方法中，对String类型字段调用trim()方法-->
-            <property name="trimStrings" value="true"/>
+            <property name="trimStrings" value="false"/>
         </javaModelGenerator>
         <!--映射文件生成配置-->
         <sqlMapGenerator targetPackage="xml" targetProject="micro-tools\mybatis-generator\src\mybatis">
@@ -83,7 +83,7 @@
 <!--            <ignoreColumn column="sYs_time" delimitedColumnName="false"/>-->
 <!--        </table>-->
 
-        <table tableName="micro_config" domainObjectName="MicroConfig" enableSelectByExample="false"
+        <table tableName="micro_config" domainObjectName="MicroConfig" enableSelectByExample="true"
                enableDeleteByPrimaryKey="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false" selectByPrimaryKeyQueryId="false"
                selectByExampleQueryId="false">

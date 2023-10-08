@@ -14,13 +14,6 @@
     <properties>
         <java.version>1.8</java.version>
         <localRepository>${settings.localRepository}</localRepository>
-        <!--指定读取哪个配置文件来生成模型，使用maven生成时有效-->
-        <mybatis.generator.configurationFile>src/main/resources/mybatis/generatorConfig-link.xml
-        </mybatis.generator.configurationFile>
-        <!--指定生成哪些表的文件，使用maven生成时有效-->
-        <mybatis.generator.tableNames>micro_config</mybatis.generator.tableNames>
-        <!--是否打印过程日志信息，使用maven生成时有效-->
-        <mybatis.generator.verbose>true</mybatis.generator.verbose>
     </properties>
 
     <dependencies>
@@ -28,13 +21,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>1.4.0</version>
         </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -57,34 +48,5 @@
             </exclusions>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.4.0</version>
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.20</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
