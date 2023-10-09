@@ -45,13 +45,8 @@ public class FelixCommentGenerator extends DefaultCommentGenerator {
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-
         topLevelClass.addJavaDocLine("/**"); //$NON-NLS-1$
-
-
         topLevelClass.addJavaDocLine(" * generated at " + LocalDateTime.now().format(formatter)); //$NON-NLS-1$
-
-
         topLevelClass.addJavaDocLine(" */"); //$NON-NLS-1$
     }
 
@@ -62,11 +57,7 @@ public class FelixCommentGenerator extends DefaultCommentGenerator {
             String remarks = introspectedColumn.getRemarks();
             if (this.addRemarkComments && StringUtility.stringHasValue(remarks)) {
                 String[] remarkLines = remarks.split(System.getProperty("line.separator"));
-                String[] var6 = remarkLines;
-                int var7 = remarkLines.length;
-
-                for (int var8 = 0; var8 < var7; ++var8) {
-                    String remarkLine = var6[var8];
+                for (String remarkLine : remarkLines) {
                     field.addJavaDocLine(" * " + remarkLine);
                 }
             }

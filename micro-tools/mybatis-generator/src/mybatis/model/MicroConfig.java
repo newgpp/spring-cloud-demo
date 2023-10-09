@@ -1,7 +1,7 @@
 package model;
 
 /**
- * generated at 2023-10-09 07:56:27
+ * generated at 2023-10-09 09:30:08
  */
 public class MicroConfig {
     /**
