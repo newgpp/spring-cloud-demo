@@ -136,3 +136,18 @@ https://redis.io/commands/xinfo-stream/
 https://redis.io/commands/xinfo-groups/
 https://redis.io/commands/xinfo-consumers/
 ```
+
+### bloom filter
+
+```html
+# 配置布隆过滤器参数
+https://redis.io/commands/bf.reserve/
+```
+
+```shell
+BF.RESERVE bf_order_id 0.01 1000 EXPANSION 2
+
+BF.ADD bf_order_id 123456789
+
+BF.EXISTS bf_order_id 123456789
+```

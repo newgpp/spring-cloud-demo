@@ -21,13 +21,14 @@ public class RedisCasTest {
     @Before
     public void init() {
         RedisURI redisURI = RedisURI.Builder
-                .redis("192.168.197.101", 6379)
+                .redis("192.168.159.111", 6379)
                 .withPassword("redis123")
                 .withDatabase(0)
                 .build();
         redisClient = RedisClient.create(redisURI);
         connection = redisClient.connect();
         commands = connection.sync();
+
     }
 
     /**
