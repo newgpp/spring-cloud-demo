@@ -23,7 +23,7 @@
 
         <!--数据库配置-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.159.111:3306/micro_govern"
+                        connectionURL="jdbc:mysql://192.168.159.111:3306/prod_sjs_busidb"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -58,14 +58,15 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="micro_config" domainObjectName="MicroConfig"
+        <table tableName="t_five_rate_report" domainObjectName="FiveRateReport"
                enableSelectByExample="false"
                enableDeleteByExample="false"
                enableCountByExample="false"
                enableUpdateByExample="false"
                selectByPrimaryKeyQueryId="false"
                selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+<!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+            <property name="useActualColumnNames" value="true"/>
         </table>
     </context>
 
