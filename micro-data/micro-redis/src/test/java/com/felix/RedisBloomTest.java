@@ -1,7 +1,8 @@
 package com.felix;
 
 
-import io.rebloom.client.Client;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
 /**
  * BF.RESERVE bf_order_id 0.01 1000 EXPANSION 2
@@ -23,60 +25,62 @@ public class RedisBloomTest {
     private static final Logger log = LoggerFactory.getLogger(RedisBloomTest.class);
 
 
-    @Test
-    public void rebloom_bloom_test() {
-        JedisPoolConfig conf = new JedisPoolConfig();
-        conf.setMaxTotal(10);
-        conf.setTestOnBorrow(false);
-        conf.setTestOnReturn(false);
-        conf.setTestOnCreate(false);
-        conf.setTestWhileIdle(false);
-        conf.setMinEvictableIdleTimeMillis(60000);
-        conf.setTimeBetweenEvictionRunsMillis(30000);
-        conf.setNumTestsPerEvictionRun(-1);
-        conf.setFairness(true);
+    private JedisPool jedisPool;
 
-        JedisPool jedisPool = new JedisPool(conf, "192.168.159.111", 6379, 500, "redis123", 0);
-        Client client = new Client(jedisPool);
+    @Before
+    public void init() {
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setMaxTotal(128);
+        poolConfig.setMaxIdle(128);
+        poolConfig.setMinIdle(16);
+        poolConfig.setTestOnBorrow(true);
+        poolConfig.setTestOnReturn(true);
+        poolConfig.setTestWhileIdle(true);
+        poolConfig.setMinEvictableIdleTimeMillis(Duration.ofSeconds(60).toMillis());
+        poolConfig.setTimeBetweenEvictionRunsMillis(Duration.ofSeconds(30).toMillis());
+        poolConfig.setNumTestsPerEvictionRun(3);
+        poolConfig.setBlockWhenExhausted(true);
+        jedisPool = new JedisPool(poolConfig, "192.168.159.111", 6379, 500, "redis123", 0);
+    }
 
-        String bfKey = "bf_order_id";
-        boolean exists = client.exists(bfKey, "123456789");
-
-        System.out.println(exists);
+    @After
+    public void destroy() {
+        jedisPool.destroy();
     }
 
     /**
      * public enum Command implements ProtocolCommand {
-     *     RESERVE("BF.RESERVE"),
-     *     ADD("BF.ADD"),
-     *     MADD("BF.MADD"),
-     *     EXISTS("BF.EXISTS"),
-     *     MEXISTS("BF.MEXISTS"),
-     *     INSERT("BF.INSERT"),
-     *     INFO("BF.INFO");
-     *
-     *     private final byte[] raw;
-     *
-     *     Command(String alt) {
-     *         raw = SafeEncoder.encode(alt);
-     *     }
-     *
-     *     public byte[] getRaw() {
-     *         return raw;
-     *     }
+     * RESERVE("BF.RESERVE"),
+     * ADD("BF.ADD"),
+     * MADD("BF.MADD"),
+     * EXISTS("BF.EXISTS"),
+     * MEXISTS("BF.MEXISTS"),
+     * INSERT("BF.INSERT"),
+     * INFO("BF.INFO");
+     * <p>
+     * private final byte[] raw;
+     * <p>
+     * Command(String alt) {
+     * raw = SafeEncoder.encode(alt);
+     * }
+     * <p>
+     * public byte[] getRaw() {
+     * return raw;
+     * }
      * }
      */
     @Test
     public void jedis_bloom_test() {
+        //given
         String bfKey = "bf_order_id";
-
-        Jedis jedis = new Jedis("192.168.159.111", 6379);
-        jedis.auth("redis123");
-        jedis.select(0);
+        //when
+        Jedis jedis = jedisPool.getResource();
         Object o = jedis.sendCommand(() -> "BF.EXISTS".getBytes(StandardCharsets.UTF_8), bfKey, "123456789");
-
+        //then
         System.out.println(o);
-
     }
+
+
+
 
 }
