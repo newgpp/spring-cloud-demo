@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS `micro_member`;
 USE `micro_member`;
 CREATE TABLE IF NOT EXISTS `t_member` (
-  `memberId` BIGINT(20) NOT NULL COMMENT 'id',
+  `memberId` BIGINT NOT NULL COMMENT 'id',
   `memberName` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '名字',
   `mobile` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '电话',
   `email` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '邮箱',
@@ -9,10 +9,14 @@ CREATE TABLE IF NOT EXISTS `t_member` (
   `createdTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updatedTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   `extraJson` JSON DEFAULT NULL COMMENT '其他信息',
+  `nickname` VARCHAR(20) GENERATED ALWAYS AS (JSON_UNQUOTE(JSON_EXTRACT(`extraJson`, '$.nickname'))) VIRTUAL,
   PRIMARY KEY (`memberId`),
   UNIQUE KEY `idx_mobile` (`mobile`) USING BTREE,
   UNIQUE KEY `idx_email` (`email`) USING BTREE
-  ) COMMENT '会员表';
+)  COMMENT='会员表';
+
+INSERT INTO `t_member` (`memberId`, `memberName`, `mobile`, `email`, `birthday`, `createdTime`, `updatedTime`, `extraJson`) VALUES
+('1','name','13900001111','name@qq.com',NULL,'2023-10-16 14:50:02','2023-10-16 15:03:06','{\"nickname\": \"jj\", \"realname\": \"mjj\"}');
 
 
 CREATE DATABASE IF NOT EXISTS `micro_transaction`;
@@ -30,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `t_account` (
   `extraJson` JSON DEFAULT NULL COMMENT '其他信息',
   PRIMARY KEY (`accountId`),
   KEY `idx_member_id` (`memberId`) USING BTREE
-  ) COMMENT '账户表';
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4 COMMENT '账户表';
 
 
 CREATE TABLE IF NOT EXISTS `t_account_history` (

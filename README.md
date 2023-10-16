@@ -81,3 +81,13 @@ https://min.io/docs/minio/linux/index.html
 # Java sdk 示例
 https://github.com/minio/minio-java/tree/master/examples
 ```
+
+- micro-mysql
+```html
+# json类型操作函数
+https://blog.51cto.com/u_13738137/6036515
+
+# json virtual columns
+https://blog.csdn.net/hawk9821/article/details/104336623
+
+```

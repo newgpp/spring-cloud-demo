@@ -124,4 +124,24 @@
       extraJson = #{extraJson,jdbcType=LONGVARCHAR}
     where memberId = #{memberId,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByNickName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_member
+    where extraJson ->> '$.nickname' = #{nickName}
+  </select>
+
+  <select id="selectByNickNameIndex" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_member
+    where nickname = #{nickName}
+  </select>
+
+  <update id="updateRealNameByNickname" parameterType="java.lang.String">
+    UPDATE t_member SET extraJson = JSON_SET(extraJson, '$.realname', #{realName}) where extraJson ->> '$.nickname' = #{nickName}
+  </update>
+
+
 </mapper>
