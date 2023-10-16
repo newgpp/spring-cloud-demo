@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.dao.member.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.felix.entity.member.Member">
+    <id column="memberId" jdbcType="BIGINT" property="memberId" />
+    <result column="memberName" jdbcType="VARCHAR" property="memberName" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    memberId, memberName, mobile, email, birthday, createdTime, updatedTime, extraJson
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_member
+    where memberId = #{memberId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_member
+    where memberId = #{memberId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.entity.member.Member">
+    insert into t_member (memberId, memberName, mobile, 
+      email, birthday, createdTime, 
+      updatedTime, extraJson)
+    values (#{memberId,jdbcType=BIGINT}, #{memberName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{extraJson,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.entity.member.Member">
+    insert into t_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        memberId,
+      </if>
+      <if test="memberName != null">
+        memberName,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="extraJson != null">
+        extraJson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraJson != null">
+        #{extraJson,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.entity.member.Member">
+    update t_member
+    <set>
+      <if test="memberName != null">
+        memberName = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraJson != null">
+        extraJson = #{extraJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where memberId = #{memberId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.felix.entity.member.Member">
+    update t_member
+    set memberName = #{memberName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      extraJson = #{extraJson,jdbcType=LONGVARCHAR}
+    where memberId = #{memberId,jdbcType=BIGINT}
+  </update>
+</mapper>

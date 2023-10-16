@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.felix.entity.transaction.Account">
+    <id column="accountId" jdbcType="BIGINT" property="accountId" />
+    <result column="accountType" jdbcType="VARCHAR" property="accountType" />
+    <result column="memberId" jdbcType="BIGINT" property="memberId" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="extraJson" jdbcType="LONGVARCHAR" property="extraJson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    accountId, accountType, memberId, balance, freeze, total, version, createdTime, updatedTime, extraJson
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Blob_Column_List" />
+    from t_account
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.entity.transaction.Account">
+    insert into t_account (accountId, accountType, memberId, 
+      balance, freeze, total, 
+      version, createdTime, updatedTime, 
+      extraJson)
+    values (#{accountId,jdbcType=BIGINT}, #{accountType,jdbcType=VARCHAR}, #{memberId,jdbcType=BIGINT}, 
+      #{balance,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, #{total,jdbcType=DECIMAL}, 
+      #{version,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{extraJson,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.entity.transaction.Account">
+    insert into t_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        accountId,
+      </if>
+      <if test="accountType != null">
+        accountType,
+      </if>
+      <if test="memberId != null">
+        memberId,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="extraJson != null">
+        extraJson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraJson != null">
+        #{extraJson,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.entity.transaction.Account">
+    update t_account
+    <set>
+      <if test="accountType != null">
+        accountType = #{accountType,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        memberId = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraJson != null">
+        extraJson = #{extraJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.felix.entity.transaction.Account">
+    update t_account
+    set accountType = #{accountType,jdbcType=VARCHAR},
+      memberId = #{memberId,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      total = #{total,jdbcType=DECIMAL},
+      version = #{version,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      extraJson = #{extraJson,jdbcType=LONGVARCHAR}
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </update>
+</mapper>

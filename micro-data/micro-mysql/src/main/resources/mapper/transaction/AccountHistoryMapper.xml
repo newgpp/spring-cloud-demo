@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.dao.transaction.AccountHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.felix.entity.transaction.AccountHistory">
+    <id column="accountHistoryId" jdbcType="BIGINT" property="accountHistoryId" />
+    <result column="transactionType" jdbcType="VARCHAR" property="transactionType" />
+    <result column="accountId" jdbcType="BIGINT" property="accountId" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="ts" jdbcType="BIGINT" property="ts" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updatedTime" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="extraJson" jdbcType="LONGVARCHAR" property="extraJson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    accountHistoryId, transactionType, accountId, balance, freeze, total, amount, ts, 
+    createdTime, updatedTime, extraJson
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_account_history
+    where accountHistoryId = #{accountHistoryId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account_history
+    where accountHistoryId = #{accountHistoryId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.entity.transaction.AccountHistory">
+    insert into t_account_history (accountHistoryId, transactionType, 
+      accountId, balance, freeze, 
+      total, amount, ts, createdTime, 
+      updatedTime, extraJson)
+    values (#{accountHistoryId,jdbcType=BIGINT}, #{transactionType,jdbcType=VARCHAR}, 
+      #{accountId,jdbcType=BIGINT}, #{balance,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, 
+      #{total,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{ts,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{extraJson,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.entity.transaction.AccountHistory">
+    insert into t_account_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountHistoryId != null">
+        accountHistoryId,
+      </if>
+      <if test="transactionType != null">
+        transactionType,
+      </if>
+      <if test="accountId != null">
+        accountId,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="createdTime != null">
+        createdTime,
+      </if>
+      <if test="updatedTime != null">
+        updatedTime,
+      </if>
+      <if test="extraJson != null">
+        extraJson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountHistoryId != null">
+        #{accountHistoryId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionType != null">
+        #{transactionType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="ts != null">
+        #{ts,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraJson != null">
+        #{extraJson,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.entity.transaction.AccountHistory">
+    update t_account_history
+    <set>
+      <if test="transactionType != null">
+        transactionType = #{transactionType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        accountId = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=BIGINT},
+      </if>
+      <if test="createdTime != null">
+        createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extraJson != null">
+        extraJson = #{extraJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where accountHistoryId = #{accountHistoryId,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.felix.entity.transaction.AccountHistory">
+    update t_account_history
+    set transactionType = #{transactionType,jdbcType=VARCHAR},
+      accountId = #{accountId,jdbcType=BIGINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      total = #{total,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      ts = #{ts,jdbcType=BIGINT},
+      createdTime = #{createdTime,jdbcType=TIMESTAMP},
+      updatedTime = #{updatedTime,jdbcType=TIMESTAMP},
+      extraJson = #{extraJson,jdbcType=LONGVARCHAR}
+    where accountHistoryId = #{accountHistoryId,jdbcType=BIGINT}
+  </update>
+</mapper>
