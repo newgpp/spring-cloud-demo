@@ -149,4 +149,21 @@ public class AccountHistory {
     public void setExtraJson(String extraJson) {
         this.extraJson = extraJson;
     }
+
+    @Override
+    public String toString() {
+        return "AccountHistory{" +
+                "accountHistoryId=" + accountHistoryId +
+                ", transactionType='" + transactionType + '\'' +
+                ", accountId=" + accountId +
+                ", balance=" + balance +
+                ", freeze=" + freeze +
+                ", total=" + total +
+                ", amount=" + amount +
+                ", ts=" + ts +
+                ", createdTime=" + createdTime +
+                ", updatedTime=" + updatedTime +
+                ", extraJson='" + extraJson + '\'' +
+                '}';
+    }
 }

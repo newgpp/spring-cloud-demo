@@ -162,4 +162,44 @@
       extraJson = #{extraJson,jdbcType=LONGVARCHAR}
     where accountHistoryId = #{accountHistoryId,jdbcType=BIGINT}
   </update>
+
+  <select id="selectPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from t_account_history
+    where accountId = #{accountId}
+    <if test="startTs != null">
+      and ts >= #{startTs}
+    </if>
+    <if test="endTs != null">
+      <![CDATA[and ts < #{endTs}]]>
+    </if>
+    <if test="from != null">
+      <choose>
+        <when test="direct == 'next'">
+          <![CDATA[and accountHistoryId >= #{from}]]>
+          order by accountHistoryId asc
+        </when>
+        <when test="direct == 'prev'">
+          <![CDATA[and accountHistoryId <= #{from}]]>
+          order by accountHistoryId desc
+        </when>
+      </choose>
+    </if>
+    <if test="from == null">
+      order by accountHistoryId asc
+    </if>
+    limit #{size}
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from t_account_history
+    where accountId = #{accountId}
+    <if test="startTs != null">
+      and ts >= #{startTs}
+    </if>
+    <if test="endTs != null">
+      <![CDATA[and ts < #{endTs}]]>
+    </if>
+    order by accountHistoryId asc
+  </select>
+  
 </mapper>
