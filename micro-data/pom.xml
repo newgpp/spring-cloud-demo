@@ -11,6 +11,7 @@
         <module>micro-minio</module>
         <module>micro-redis</module>
         <module>micro-mysql</module>
+        <module>micro-algorithm</module>
     </modules>
     <packaging>pom</packaging>
 
