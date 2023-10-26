@@ -7,6 +7,7 @@ package com.felix;
 public class Node {
 
     int value;
+    int height;
     Node left;
     Node right;
 

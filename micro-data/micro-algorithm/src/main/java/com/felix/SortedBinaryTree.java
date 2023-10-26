@@ -6,8 +6,9 @@ import java.util.Queue;
 /**
  * @author felix
  * @desc some desc
+ * https://www.baeldung.com/java-binary-tree
  */
-public class BinaryTree {
+public class SortedBinaryTree {
 
     Node root;
 
@@ -94,13 +95,13 @@ public class BinaryTree {
 
     /**
      * Depth-First(深度遍历) Search
-     * 从小到大
+     * 从大到小
      */
     public void traversePostOrder(Node node) {
         if (node != null) {
-            traverseInOrder(node.left);
-            traverseInOrder(node.right);
+            traversePostOrder(node.right);
             System.out.print(" " + node.value);
+            traversePostOrder(node.left);
         }
     }
 
@@ -114,14 +115,15 @@ public class BinaryTree {
         Queue<Node> nodes = new LinkedList<>();
         nodes.add(root);
         while (!nodes.isEmpty()) {
-            Node node = nodes.remove();
+            Node node = nodes.peek();
             System.out.print(" " + node.value);
-            if(node.left != null){
+            if (node.left != null) {
                 nodes.add(node.left);
             }
-            if(node.right != null){
+            if (node.right != null) {
                 nodes.add(node.right);
             }
+            nodes.remove();
         }
     }
 
@@ -134,7 +136,7 @@ public class BinaryTree {
         return containsNodeRecursive(root, value);
     }
 
-    public void delete(int value){
+    public void delete(int value) {
         deleteRecursive(root, value);
     }
 

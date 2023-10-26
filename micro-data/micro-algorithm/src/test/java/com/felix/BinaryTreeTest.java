@@ -4,24 +4,30 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.stream.Stream;
-
 /**
  * @author felix
  * @desc some desc
  */
 public class BinaryTreeTest {
 
-    private BinaryTree bt = new BinaryTree();
+    private final SortedBinaryTree bt = new SortedBinaryTree();
 
     @Before
-    public void init(){
-        Stream.iterate(1, x -> x + 1).limit(10).forEach(x -> bt.add(x));
+    public void init() {
+        bt.add(5);
+        bt.add(3);
+        bt.add(8);
+        bt.add(2);
+        bt.add(4);
+        bt.add(7);
+        bt.add(9);
+        bt.add(1);
+        bt.add(6);
+        bt.add(10);
     }
 
     @Test
-    public void contains_node_should_return_true(){
-        bt.traverseInOrder(bt.root);
+    public void contains_node_should_return_true() {
         Assert.assertTrue(bt.containsNode(1));
         Assert.assertTrue(bt.containsNode(5));
         Assert.assertTrue(bt.containsNode(10));
@@ -29,15 +35,31 @@ public class BinaryTreeTest {
     }
 
     @Test
-    public void delete_node_should_success(){
-        bt.traverseInOrder(bt.root);
+    public void delete_node_should_success() {
         Assert.assertTrue(bt.containsNode(5));
         bt.delete(5);
-        System.out.println("");
-        System.out.println("---------------------");
+        Assert.assertFalse(bt.containsNode(5));
+    }
+
+    @Test
+    public void travel_depths_in_order() {
         bt.traverseInOrder(bt.root);
     }
 
+    @Test
+    public void travel_depths_pre_order() {
+        bt.traversePreOrder(bt.root);
+    }
+
+    @Test
+    public void travel_depths_post_order() {
+        bt.traversePostOrder(bt.root);
+    }
+
+    @Test
+    public void travel_level_order() {
+        bt.traverseLevelOrder();
+    }
 
 
 }
